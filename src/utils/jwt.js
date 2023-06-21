@@ -1,4 +1,7 @@
-import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import pkg from 'jsonwebtoken'
+
+const {TokenExpiredError, JsonWebTokenError} = pkg
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
