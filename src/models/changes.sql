@@ -1,0 +1,2 @@
+ALTER TABLE admins 
+ALTER COLUNM admin_role TYPE VARCHAR(15)
