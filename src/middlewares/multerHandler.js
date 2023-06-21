@@ -1,4 +1,4 @@
-import { BadRequestError } from "../utils/errors.js";
+import { BadRequestError } from "../errors/errors.js";
 import upload from "../utils/upload.js";
 
 export default (req, res, next) => {
