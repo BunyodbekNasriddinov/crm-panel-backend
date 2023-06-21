@@ -8,25 +8,26 @@ import cors from "cors";
 import { resolve } from "path";
 import { createWriteStream } from "fs";
 
+// other modules import
 import errorHandler from "./middlewares/errorHandler.js";
+import { PORT } from "./config.js";
 
 // all routes import
 import allRoutes from "./routes/all.routes.js";
 
-const PORT = process.env.PORT || 5001;
+
 const app = express();
 
-// setup
+// middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.static(resolve("uploads")));
 
-// create a write stream (in append mode)
+
+// setup the logger
 const accessLogStream = createWriteStream(resolve("access.log"), {
   flags: "a",
 });
-
-// setup the logger
 app.use(morgan("combined", { stream: accessLogStream }));
 
 // all routes
