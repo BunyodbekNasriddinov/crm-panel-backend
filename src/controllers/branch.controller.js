@@ -1,5 +1,5 @@
-import { BadRequestError, InternalServerError } from "../errors/errors"
-import branchModel from "../models/branch.model"
+import { BadRequestError, InternalServerError } from "../errors/errors.js"
+import branchModel from "../models/branch.model.js"
 
 async function newBranch(req, res, next) {
   try {
