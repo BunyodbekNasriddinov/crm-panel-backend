@@ -7,3 +7,6 @@ CREATE TABLE superadmin(
   username VARCHAR(32) NOT NULL, 
   password VARCHAR(60) NOT NULL
 )
+-- courses
+ALTER TABLE admins 
+ALTER COLUNM admin_role TYPE VARCHAR(15)
