@@ -13,3 +13,7 @@ ALTER COLUNM admin_role TYPE VARCHAR(15)
 -- course image
 ALTER TABLE courses 
 ADD COLUMN course_image VARCHAR(64)
+
+-- superadmin role column add
+ALTER TABLE superadmin
+ADD COLUMN role VARCHAR(16)
