@@ -1,7 +1,9 @@
 import teacherModel from "../models/teacher.model.js"
 
-async function login() {}
+async function getTeacher(req, res, next) {
+  const teacher = await teacherModel.getAllTeacher()
 
-export default {
-  login,
+  res.send(teacher)
 }
+
+export default getTeacher
