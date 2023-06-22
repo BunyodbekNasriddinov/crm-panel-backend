@@ -1,34 +1,33 @@
 // third party packages import
-import express from "express";
-import morgan from "morgan";
-import "dotenv/config.js";
-import cors from "cors";
+import cors from 'cors';
+import 'dotenv/config.js';
+import express from 'express';
+import morgan from 'morgan';
 
 // core modules import
-import { resolve } from "path";
-import { createWriteStream } from "fs";
+import { createWriteStream } from 'fs';
+import { resolve } from 'path';
 
 // other modules import
-import errorHandler from "./middlewares/errorHandler.js";
-import { PORT } from "./config.js";
+import { PORT } from './configs/config.js';
+import errorHandler from './middlewares/errorHandler.js';
+import multer from './utils/upload.js';
 
 // all routes import
-import allRoutes from "./routes/all.routes.js";
-
+import allRoutes from './routes/all.routes.js';
 
 const app = express();
-
 // middlewares
+app.use(multer.any('avatar'));
 app.use(cors());
 app.use(express.json());
-app.use(express.static(resolve("uploads")));
-
+app.use(express.static(resolve('uploads')));
 
 // setup the logger
-const accessLogStream = createWriteStream(resolve("access.log"), {
-  flags: "a",
+const accessLogStream = createWriteStream(resolve('access.log'), {
+	flags: 'a',
 });
-app.use(morgan("combined", { stream: accessLogStream }));
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // all routes
 app.use(allRoutes);
