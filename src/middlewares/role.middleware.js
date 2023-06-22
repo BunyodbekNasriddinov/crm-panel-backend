@@ -1,7 +1,7 @@
 const role = (req, res, next) => {
     try {
         const { role } = req.data;
-        console.log(req.data);
+        console.log(role);
 
         if (!role) {
             return res.status(401).json({

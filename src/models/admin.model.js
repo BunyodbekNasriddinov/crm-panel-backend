@@ -3,9 +3,8 @@ import { fetchAll } from '../utils/pg.js';
 const getAdmin = async (admin_name, admin_password) => {
 
     const data = await fetchAll('SELECT * FROM admins WHERE $1=admin_name AND $2=admin_password', [admin_name,admin_password])
-
-    return data;
-};
+    return data
+}
 
 const getCourses = async () => {
 	const data = await fetchAll(
@@ -22,4 +21,35 @@ const postCourses = async (name, price, branch_id, image) => {
 	return data;
 };
 
-export default { getAdmin, getCourses, postCourses };
+const getAllBranches = async () => {
+	const data = await fetchAll('SELECT * FROM branch');
+	return data;
+};
+
+const findByIdAndUpdate = async (name, price, image, id) => {
+	const data = await fetchAll(
+		`UPDATE courses SET course_name = COALESCE($1, course_name), 
+												course_price = COALESCE($2, course_price),
+												course_image = COALESCE($3, course_image) 
+												WHERE course_id = $4 RETURNING *`,
+		[name, price, image, id]
+	);
+	return data;
+};
+
+const getCoursesByQuery = async name => {
+	const data = await fetchAll(
+		'SELECT * FROM courses INNER JOIN branch ON courses.branch_id = branch.branch_id  WHERE course_name ILIKE $1',
+		[`%${name}%`]
+	);
+	return data;
+};
+
+export default {
+	getAdmin,
+	getCourses,
+	postCourses,
+	getAllBranches,
+	findByIdAndUpdate,
+	getCoursesByQuery,
+};

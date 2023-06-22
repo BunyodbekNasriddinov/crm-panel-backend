@@ -2,12 +2,14 @@ import { BadRequestError, InternalServerError } from "../errors/errors.js"
 import branchModel from "../models/branch.model.js"
 
 async function getBranchById(req, res, next) {
-  const branch = await branchModel.getBranchById(+req.params?.id)
+  const {branch_id} = req.data
+  console.log(branch_id);
+  const branch = await branchModel.getBranchById(branch_id)
   if (branch instanceof BadRequestError) {
     return new next(BadRequestError(branch.message))
   }
 
-  res.json({ status: 200, message: "created", data: branch })
+  res.json({ status: 200, message: "ok", data: branch })
 }
 
 async function newBranch(req, res, next) {
