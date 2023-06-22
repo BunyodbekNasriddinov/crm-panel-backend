@@ -5,6 +5,6 @@ import adminRole from '../middlewares/role.middleware.js'
 
 const router = Router();
 
-router.post("/login",  adminRole, Login);
+router.post("/login",  Login);
 
 export default router;
