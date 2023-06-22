@@ -51,6 +51,7 @@ async function updateBranch({
 const deleteBranchQuery = `
   DELETE FROM branch
   WHERE branch_id = $1
+  RETURNING *
 `
 
 async function deleteBranch(id) {
