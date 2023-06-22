@@ -45,6 +45,11 @@ const getCoursesByQuery = async name => {
 	return data;
 };
 
+const findByIdAndDelete = async id => {
+	const data = await fetchAll('DELETE FROM courses WHERE course_id = $1 RETURNING *', [id]);
+	return data;
+};
+
 export default {
 	getAdmin,
 	getCourses,
@@ -52,4 +57,5 @@ export default {
 	getAllBranches,
 	findByIdAndUpdate,
 	getCoursesByQuery,
+	findByIdAndDelete,
 };
