@@ -76,4 +76,20 @@ const updateCourse = async (req, res, next) => {
 	}
 };
 
-export { getAllBranches, getAllCourses, postCourses, updateCourse };
+const deleteCourses = async (req, res, next) => {
+	try {
+		const course_id = req.params.course_id;
+
+		const course = await adminModel.findByIdAndDelete(course_id);
+		
+		res.status(201).json({
+			status: 201,
+			message: 'Successfully deleted ',
+			data: course[0],
+		});
+	} catch (error) {
+		next(new InternalServerError(error.message));
+	}
+};
+
+export { deleteCourses, getAllBranches, getAllCourses, postCourses, updateCourse };
