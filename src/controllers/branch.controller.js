@@ -27,7 +27,10 @@ async function newBranch(req, res, next) {
 }
 async function updateBranch(req, res, next) {
   try {
-    const branch = await branchModel.updateBranch(req.body)
+    const branch = await branchModel.updateBranch({
+      branch_id: req.params?.id,
+      ...req.body,
+    })
 
     if (branch instanceof BadRequestError) {
       return new next(BadRequestError(branch.message))

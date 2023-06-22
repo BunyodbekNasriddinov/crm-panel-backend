@@ -38,3 +38,8 @@ ADD COLUMN group_end_date DATE NOT NULL;
 ALTER TABLE 
   groups
 ADD COLUMN group_weaks VARCHAR(80) NOT NULL;
+
+-- superadmin role column add
+ALTER TABLE superadmin
+ADD COLUMN role VARCHAR(16)
+

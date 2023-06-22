@@ -7,7 +7,7 @@ const router = Router()
 
 router.get("/branch",  checktoken, role, branchController.getBranchById)
 router.post("/branch/new", branchController.newBranch)
-router.put("/branch", branchController.updateBranch)
+router.put("/branch/:id", branchController.updateBranch)
 router.delete("/branch/:id", branchController.deleteBranch)
 
 export default router
