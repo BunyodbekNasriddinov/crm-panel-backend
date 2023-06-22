@@ -6,11 +6,6 @@ const getAdmin = async (admin_name, admin_password) => {
     return data
 }
 
-
-
-    return data;
-};
-
 const getCourses = async () => {
 	const data = await fetchAll(
 		'SELECT * FROM courses AS c INNER JOIN branch AS b ON c.branch_id = b.branch_id;'
