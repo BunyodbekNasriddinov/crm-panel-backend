@@ -27,10 +27,10 @@ async function newBranch({ branch_name, branch_phone, branch_address }) {
 const updateBranchQuery = `
   UPDATE branch
   SET
-    branch_name IFNULL($1, branch_name), 
-    branch_phone IFNULL($2, branch_phone), 
-    branch_address IFNULL($3, branch_address)
-  WHERE branch_id = $4
+    branch_name = COALESCE($2, branch_name),
+    branch_phone = COALESCE($3, branch_phone), 
+    branch_address = COALESCE($4, branch_address)
+  WHERE branch_id = $1
   RETURNING *
 `
 
@@ -41,10 +41,10 @@ async function updateBranch({
   branch_address,
 }) {
   return await fetchAll(updateBranchQuery, [
+    branch_id,
     branch_name,
     branch_phone,
     branch_address,
-    branch_id,
   ])
 }
 
