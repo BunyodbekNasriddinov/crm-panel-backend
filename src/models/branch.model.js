@@ -3,11 +3,11 @@ import { fetchAll, fetchOne } from "../utils/pg.js"
 const getBranchByIdQuery = `
   SELECT * 
   FROM branch
-  WHERE branch_id = $1
+  WHERE $1=branch_id
 `
 
-async function getBranchById(id) {
-  return await fetchOne(getBranchByIdQuery, [id])
+async function getBranchById(branch_id) {
+  return await fetchAll(getBranchByIdQuery, [branch_id])
 }
 
 const newBranchQuery = `
