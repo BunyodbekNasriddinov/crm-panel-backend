@@ -1,20 +1,13 @@
-import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
-const SECRET_KEY = process.env.SECRET_KEY;
 
-export default {
-	sign: payload => jwt.sign(payload, SECRET_KEY),
-	verify: token => {
-		jwt.verify(token, SECRET_KEY, (err, decode) => {
-			if (err && err instanceof JsonWebTokenError) {
-				throw new Error(err);
-			}
+const sign = (payload) => {
+	return jwt.sign(payload, 'anor')
+}
 
-			if (err && err instanceof TokenExpiredError) {
-				throw new Error(err);
-			}
 
-			return token;
-		});
-	},
-};
+const verify = (token) => {
+	return jwt.verify(token, 'anor')
+}
+
+export {sign, verify}
