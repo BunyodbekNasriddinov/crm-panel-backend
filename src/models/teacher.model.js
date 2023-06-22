@@ -1,12 +1,15 @@
 import { fetchAll } from "../utils/pg.js"
 
-const loginQuery = ``
+const loginQuery = `
+  SELECT * FROM teachers
+`
 
-const login = async ({ username, password }) => {
-  const teacher = await fetchAll(loginQuery, [username, password])
+const getAllTeacher = async () => {
+  const teacher = await fetchAll(loginQuery)
+  console.log(teacher);
   return teacher
 }
 
 export default {
-  login,
+  getAllTeacher,
 }

@@ -1,12 +1,45 @@
-import { fetchAll } from "../utils/pg.js"
+import { fetchAll, fetchOne } from "../utils/pg.js";
 
-const loginQuery = ``
+const getAllStudentQuery = `SELECT 
+                              * 
+                            FROM 
+                              students
+                            `;
 
-const login = async ({ username, password }) => {
-  const student = await fetchAll(loginQuery, [username, password])
-  return student
-}
+const getAllStudent = async () => {
+    const student = await fetchAll(getAllStudentQuery);
+    return student;
+};
 
-export default {
-  login,
-}
+const createStudentQuery = `INSERT INTO 
+                              students(student_full_name, student_age, student_phone, group_id, student_role) 
+                            VALUES 
+                              ($1, $2, $3 $4, $5)
+                            `;
+
+const createStudent = async (
+    student_full_name,
+    student_age,
+    student_phone,
+    group_id,
+    student_role
+) => {
+    const student = await fetchOne(createStudentQuery, [
+        student_full_name,
+        student_age,
+        student_phone,
+        group_id,
+        student_role,
+    ]);
+    return student;
+};
+
+const updateStudentQuery = `
+UPDATE 
+  students
+SET  
+
+
+`;
+
+export { getAllStudent, createStudent };
