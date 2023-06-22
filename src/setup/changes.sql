@@ -1,5 +1,5 @@
 ALTER TABLE admins 
-ALTER COLUNM admin_role TYPE VARCHAR(15)
+ALTER COLUMN admin_role TYPE VARCHAR(15)
 
 -- super admin table
 CREATE TABLE superadmin(
@@ -10,3 +10,6 @@ CREATE TABLE superadmin(
 -- courses
 ALTER TABLE admins 
 ALTER COLUNM admin_role TYPE VARCHAR(15)
+-- course image
+ALTER TABLE courses 
+ADD COLUMN course_image VARCHAR(64)
